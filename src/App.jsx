@@ -9,10 +9,11 @@ function App() {
 
   return (
     <>
-      <p className="read-the-docs">
-       welcome to the blog app
-      </p>
-      <Outlet />
+      <div>
+        <main>
+        <Outlet />
+        </main>
+      </div>
     </>
   )
 }
