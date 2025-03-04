@@ -1,9 +1,9 @@
 import React from 'react'
 
-function logo({width}) {
+function Logo({width = '100px'}) {
   return (
-    <img src='https://via.placeholder.com/150' style={{width}} alt='logo' />
+    <div>Logo</div>
   )
 }
 
-export default logo
+export default Logo

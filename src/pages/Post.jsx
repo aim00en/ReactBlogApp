@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { Container } from '../components/Container/Container'
-import { PostForm } from '../components/post-form/PostForm'
-import { usePost } from '../hooks/usePost'
 import parse from 'react-html-parser'
 import { appWriteService } from '../appwrite/config'
 

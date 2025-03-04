@@ -1,9 +1,9 @@
 import React from 'react'
-import {Container} from '../Container/Container'
-import {Logo} from '../Logo/Logo'
-import Link from 'react-router-dom'
-import {LogoutBtn} from '../LogoutBtn/LogoutBtn'
-import {useNavigator} from 'react-router-dom'
+import Container from '../container/container'
+import Logo from '../Logo'
+import {Link} from 'react-router-dom'
+import LogoutBtn from './LogoutBtn'
+import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Header() {
@@ -32,7 +32,7 @@ function Header() {
         },
         {
             name: 'Add Posts',
-            slug: '/add-posts',
+            slug: '/add-post',
             active: true
         },
         
