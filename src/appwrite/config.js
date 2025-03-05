@@ -17,7 +17,7 @@ export class serviceDatabase{
                 }
             )
         } catch (error) {
-            throw new Error(error);
+            console.log("Appwrite serive :: createPost :: error", error);
         }
     }
     async updatePost(slug, {title, content, status, featuredImage, userid}){
@@ -31,7 +31,7 @@ export class serviceDatabase{
             throw new Error(error);
         }
     }
-    async deleteDoc(slug){
+    async deletePost(slug){
         try {
              await this.db.deleteDocument(conf.appwriteDB, conf.appwriteCollId, slug)
              return true;
@@ -46,7 +46,7 @@ export class serviceDatabase{
             throw new Error(error);
         }
     }
-    async listPosts(queries =[Query.equal('status',"active")]){
+    async getPosts(queries =[Query.equal('status',"active")]){
         try {
             return await this.db.listDocuments(conf.appwriteDB, conf.appwriteCollId, queries)
         } catch (error) {
