@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import './App.css'
+import './index.css'
 import authService from "./appwrite/auth"
 import {login, logout} from "./store/authSlice"
 import { Footer, Header } from './components'
@@ -22,8 +22,10 @@ function App() {
     })
     .finally(() => setLoading(false))
   }, [])
-  
+  // return <div className="bg-red-500 text-white p-4">Hello Tailwind</div>;
   return !loading ? (
+    
+
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
       <div className='w-full block'>
         <Header />

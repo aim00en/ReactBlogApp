@@ -6,13 +6,13 @@ import Container from '../components/container/container'
 function Home() {
    const [posts, setPosts] = useState([])
   
-    useEffect(()=>{
-      appwriteService.getPosts([]).then((posts)=>{
-        if(post){
-          setPosts(posts.documents)
+   useEffect(() => {
+    appwriteService.getPosts().then((posts) => {
+        if (posts) {
+            setPosts(posts.documents)
         }
-      })
-    },[])
+    })
+}, [])
 
     if (posts.length === 0) {
       return (

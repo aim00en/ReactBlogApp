@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams, Link } from 'react-router-dom'
-import { Container } from '../components/Container/Container'
-import parse from 'react-html-parser'
-import { appWriteService } from '../appwrite/config'
+import { Container, Button } from '../components'
+import parse from 'html-react-parser';
+import appWriteService  from '../appwrite/config'
 
 
-function Post() {
+export default function Post() {
   const [post, setPost] = useState(null)
-  const slug = useParams()
+  const {slug} = useParams()
   const navigate = useNavigate()
 
   const userData = useSelector((state) => state.auth.userData)
@@ -16,6 +16,7 @@ function Post() {
   useEffect(()=> {
     appWriteService.getPost(slug).then((post)=>{
       if(post){
+        console.log(post)
         setPost(post)
       }else{
         navigate('/');
@@ -61,5 +62,3 @@ function Post() {
     </div>
   ):null
 }
-
-export default Post

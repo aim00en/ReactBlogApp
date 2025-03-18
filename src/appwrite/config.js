@@ -9,15 +9,22 @@ export class serviceDatabase{
         this.db = new Databases(this.client)
         this.bucket = new Storage(this.client)
     }
-    async createPost({slug, title, content, status,featuredImage,userid}){
+    async createPost({title, slug, content, featuredImage, status, userId}){
         try {
-            return await this.db.createDocument(conf.appwriteDB, conf.appwriteCollId, slug,
+            return await this.db.createDocument(
+                conf.appwriteDB,
+                conf.appwriteCollId,
+                slug,
                 {
-                    title, content, status, featuredImage, userid
+                    title,
+                    content,
+                    featuredImage,
+                    status,
+                    userId,
                 }
             )
         } catch (error) {
-            console.log("Appwrite serive :: createPost :: error", error);
+            console.log("Appwrite service :: createPost :: error", error);
         }
     }
     async updatePost(slug, {title, content, status, featuredImage, userid}){
@@ -39,9 +46,9 @@ export class serviceDatabase{
             throw new Error(error);
         }
     }
-    async getPost(docId){
+    async getPost(slug){
         try {
-            return await this.db.getDocument(conf.appwriteDB, conf.appwriteCollId, docId)
+            return await this.db.getDocument(conf.appwriteDB, conf.appwriteCollId, slug)
         } catch (error) {
             throw new Error(error);
         }
@@ -64,9 +71,14 @@ export class serviceDatabase{
     // Storage Service
     async uploadFile(file){
         try {
-            return await this.bucket.createFile(conf.appwriteBucketId,ID.unique(), file)
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+            )
         } catch (error) {
-            throw new Error(error);
+            console.log("Appwrite serive :: uploadFile :: error", error);
+            return false
         }
     }
     async deleteFile(fileId){
@@ -76,12 +88,11 @@ export class serviceDatabase{
             throw new Error(error);
         }
     }
-     getFilePreview(fileId){
-        try {
-            return this.bucket.getFileView(fileId).href
-        } catch (error) {
-            throw new Error(error);
-        }
+    getFilePreview(fileId){
+        return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
     }
 
 

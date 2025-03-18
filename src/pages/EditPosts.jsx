@@ -7,7 +7,7 @@ import PostForm from '../components/post-form/PostForm'
 
 
 function EditPosts() {
-  const [Post, SetPost] = useState()
+  const [Post, setPost] = useState()
   const { slug } = useParams()
   const navigate = useNavigate()
 
@@ -16,20 +16,22 @@ function EditPosts() {
       appwiteService.getPost(slug).then((post)=>{
         if(post){
           setPost(post)
+          console.log("from Edit Post: ", post)
         }
         else{
           navigate('/')
         }
       })
     }
-  },[])
-    return (
-    <div className='py-6'>
-      <Container>
-        <PostForm post={Post} />
-      </Container>
-    </div>
-  )
+  },[slug, navigate])
+
+    return Post ? (
+      <div className='py-8'>
+          <Container>
+              <PostForm Post={Post} />
+          </Container>
+      </div>
+    ) : null
 }
 
 export default EditPosts

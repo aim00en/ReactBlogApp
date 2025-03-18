@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import "./index.css"; 
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Provider } from "react-redux"
@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import AllPosts from './pages/AllPosts.jsx'
 import Protected from './components/AuthLayout.jsx'
+import Post from "./pages/Post";
 
 const BrowserRouter = createBrowserRouter([
   {
@@ -35,15 +36,6 @@ const BrowserRouter = createBrowserRouter([
         element:(
           <Protected authentication = {false}>
             <SignUp/>
-          </Protected>
-        )
-      },
-      
-      {
-        path: '/all-posts',
-        element:(
-          <Protected authentication>
-            <AllPosts/>
           </Protected>
         )
       },
@@ -71,6 +63,10 @@ const BrowserRouter = createBrowserRouter([
           </Protected>
         )
       },
+      {
+        path: "/post/:slug",
+        element: <Post />,
+    },
       
     ]
   }
